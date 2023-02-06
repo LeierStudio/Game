@@ -49,7 +49,8 @@ namespace Game
                 var scaleObj = _scaleObjs[i];
                 scaleObj.DOKill();
                 scaleObj.localScale = FromScale;
-                scaleObj.DOScale(ToScale, Time).SetEase(ScaleEase).SetDelay(i * Interval);
+                var randomInterval = Random.Range(0, 4);
+                scaleObj.DOScale(ToScale, Time).SetEase(ScaleEase).SetDelay(randomInterval * Interval);
             }
         }
     }

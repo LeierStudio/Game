@@ -4976,8 +4976,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FromScale: {x: 0, y: 0, z: 0}
   ToScale: {x: 1, y: 1, z: 1}
-  Time: 0.5
-  Interval: 0.002
+  Time: 0.3
+  Interval: 0.1
   ScaleEase: 3
 --- !u!1001 &1437110628
 PrefabInstance:
