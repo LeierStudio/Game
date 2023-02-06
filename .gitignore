@@ -5,3 +5,6 @@
 /LeierSurvival/ProjectSettings
 /LeierSurvival/Temp
 /LeierSurvival/UserSettings
+/LeierSurvival/.vs/LeierSurvival/v16/*.suo
+/LeierSurvival/*.csproj
+/LeierSurvival/obj/Debug/*.cache
