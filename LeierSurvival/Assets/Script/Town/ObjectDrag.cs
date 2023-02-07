@@ -43,9 +43,9 @@ namespace Game.Town
             var shader = Shader.Find(alpha >= 1 ? "Legacy Shaders/Diffuse" : "Legacy Shaders/Transparent/Diffuse");
             foreach (var renderer in Renderers)
             {
-                renderer.sharedMaterial.shader = shader;
+                renderer.material.shader = shader;
                 renderer.GetPropertyBlock(_materialPropertyBlock);
-                var color = renderer.sharedMaterial.GetColor("_Color");
+                var color = renderer.material.GetColor("_Color");
                 color.a = 0.2f;
                 _materialPropertyBlock.SetColor("_Color", color);
                 renderer.SetPropertyBlock(_materialPropertyBlock);
