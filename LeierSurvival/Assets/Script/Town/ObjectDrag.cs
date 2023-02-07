@@ -4,21 +4,52 @@ namespace Game.Town
 {
     public class ObjectDrag : MonoBehaviour
     {
-        /// <summary> 偏移量 </summary>
-        Vector3 _offset;
+        /// <summary> 滑鼠世界座標 </summary>
+        public Vector3 MouseWorldPosition;
 
-        void OnMouseDown()
+        /// <summary> 渲染器們 </summary>
+        public Renderer[] Renderers;
+
+        /// <summary> 材質球屬性塊 </summary>
+        MaterialPropertyBlock _materialPropertyBlock;
+
+        void Awake()
         {
-            // 設定，偏移量。(目前世界座標 - 滑鼠世界座標)
-            _offset = transform.position - BuildingSystem.GetMouseWorldPosition();
+            _materialPropertyBlock = new MaterialPropertyBlock();
+            Renderers = GetComponentsInChildren<Renderer>();
+
+            // 設定透明度
+            SetTransparency(0.2f);
         }
 
-        void OnMouseDrag()
+        void Update()
         {
-            // 設定，位置。(滑鼠世界座標 + 偏移量)
-            var pos = BuildingSystem.GetMouseWorldPosition() + _offset;
             // 設定，位置。(將座標捕捉到網格)
-            transform.position = BuildingSystem.Inst.SnapCoordinateToGrid(pos);
+            transform.position = CameraSystem.Inst.GetMouseGridPosition();
+        }
+
+        void OnDestroy()
+        {
+            // 設定透明度
+            SetTransparency(1);
+        }
+
+        /// <summary>
+        /// 設定透明度
+        /// </summary>
+        /// <param name="alpha">透明度</param>
+        void SetTransparency(float alpha)
+        {
+            var shader = Shader.Find(alpha >= 1 ? "Legacy Shaders/Diffuse" : "Legacy Shaders/Transparent/Diffuse");
+            foreach (var renderer in Renderers)
+            {
+                renderer.sharedMaterial.shader = shader;
+                renderer.GetPropertyBlock(_materialPropertyBlock);
+                var color = renderer.sharedMaterial.GetColor("_Color");
+                color.a = 0.2f;
+                _materialPropertyBlock.SetColor("_Color", color);
+                renderer.SetPropertyBlock(_materialPropertyBlock);
+            }
         }
     }
 }
