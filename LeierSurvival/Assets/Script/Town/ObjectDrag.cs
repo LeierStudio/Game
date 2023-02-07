@@ -4,9 +4,6 @@ namespace Game.Town
 {
     public class ObjectDrag : MonoBehaviour
     {
-        /// <summary> 滑鼠世界座標 </summary>
-        public Vector3 MouseWorldPosition;
-
         /// <summary> 渲染器們 </summary>
         public Renderer[] Renderers;
 
