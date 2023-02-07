@@ -19117,6 +19117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 565859116}
   - component: {fileID: 565859115}
+  - component: {fileID: 565859117}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -19153,6 +19154,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &565859117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 565859114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d1331c98f35c4d4da10f806d791b4d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GridLayout: {fileID: 565859115}
+  Prefab1: {fileID: 8591570039757839629, guid: 1fd92a999635efc4d835df10ba016542, type: 3}
+  Prefab2: {fileID: 5679484062767713633, guid: a1d307102b37fcf4eb5179ffd4f6bb9b, type: 3}
+  MainTilemap: {fileID: 1459837426}
+  WhiteTile: {fileID: 11400000, guid: ee281f3b653d9134895e0f7dd9a1477c, type: 2}
 --- !u!1001 &567186504
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38039,14 +38057,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1107808945}
-  m_LocalRotation: {x: 0.20391637, y: -0.34652975, z: 0.07745205, w: 0.9123247}
-  m_LocalPosition: {x: 9.981592, y: 6.7430573, z: -0.84260845}
+  m_LocalRotation: {x: 0.35355338, y: -0.35355338, z: 0.1464466, w: 0.8535535}
+  m_LocalPosition: {x: 5.09, y: 11.97, z: 1.37}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 45, y: -45, z: 0}
 --- !u!1001 &1115045875
 PrefabInstance:
   m_ObjectHideFlags: 0

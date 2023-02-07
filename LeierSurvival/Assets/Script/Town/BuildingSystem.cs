@@ -23,6 +23,18 @@ namespace Game.Town
             Inst = this;
             _grid = GridLayout.GetComponent<Grid>();
         }
+
+        void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                InitializeWithObject(Prefab1);
+            }
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                InitializeWithObject(Prefab2);
+            }
+        }
         #endregion
 
         #region Utils
@@ -56,7 +68,10 @@ namespace Game.Town
         #region Building Placement
         public void InitializeWithObject(GameObject prefab)
         {
-
+            var position = SnapCoordinateToGrid(Vector3.zero);
+            var obj = Instantiate(prefab, position, Quaternion.identity);
+            _objectToPlace = obj.GetComponent<PlaceableObject>();
+            obj.AddComponent<ObjectDrag>();
         }
         #endregion
     }
