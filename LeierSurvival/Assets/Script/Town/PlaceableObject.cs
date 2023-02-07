@@ -20,6 +20,22 @@ namespace Game.Town
         }
 
         /// <summary>
+        /// 旋轉
+        /// </summary>
+        public void Rotate()
+        {
+            transform.Rotate(new Vector3(0, 90, 0));
+            Size = new Vector3Int(Size.y, Size.x, 1);
+
+            var vertices = new Vector3[_vertices.Length];
+            for (var i = 0; i < vertices.Length; i++)
+            {
+                vertices[i] = _vertices[(i + 1) % vertices.Length];
+            }
+            _vertices = vertices;
+        }
+
+        /// <summary>
         /// 放置
         /// </summary>
         public virtual void Place()

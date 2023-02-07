@@ -58,7 +58,11 @@ namespace Game.Town
             if (!_objectToPlace)
                 return;
 
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                _objectToPlace.Rotate();
+            }
+            else if (Input.GetMouseButtonDown(0))
             {
                 if (CanBePlaced(_objectToPlace))
                 {
