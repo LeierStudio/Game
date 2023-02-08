@@ -2,6 +2,7 @@
 using UnityEngine.Tilemaps;
 
 // Tile 圖塊
+// Cell 格子
 
 namespace Game.Town
 {
@@ -22,7 +23,7 @@ namespace Game.Town
         public GameObject Prefab3;
 
         /// <summary> 主圖塊地圖 </summary>
-        [SerializeField] Tilemap MainTilemap;
+        public Tilemap MainTilemap;
 
         /// <summary> 白色地圖 </summary>
         [SerializeField] TileBase WhiteTile;
@@ -97,16 +98,45 @@ namespace Game.Town
         #region Utils
 
         /// <summary>
-        /// 將座標捕捉到網格
+        /// 取得格子世界座標
         /// </summary>
         /// <param name="position">世界座標</param>
-        public Vector3 SnapCoordinateToGrid(Vector3 position)
+        public Vector3 GetCellWorldPos(Vector3 position)
         {
-            // 格子座標
-            var cellPos = GridLayout.WorldToCell(position);
-            // 設定，格子中心座標。
+            var cellPos = GetCellPos(position);
             position = _grid.GetCellCenterWorld(cellPos);
             return position;
+        }
+
+        /// <summary>
+        /// 取得格子座標
+        /// </summary>
+        /// <param name="position">位置</param>
+        public Vector3Int GetCellPos(Vector3 position)
+        {
+            var cellPos = GridLayout.WorldToCell(position);
+            return cellPos;
+        }
+
+        /// <summary>
+        /// 取得圖塊
+        /// </summary>
+        /// <param name="position">位置</param>
+        public TileBase GetTile(Vector3 position)
+        {
+            var cellPos = GridLayout.WorldToCell(position);
+            var tile = GetTile(cellPos);
+            return tile;
+        }
+
+        /// <summary>
+        /// 取得圖塊
+        /// </summary>
+        /// <param name="cellPos">格子座標</param>
+        public TileBase GetTile(Vector3Int cellPos)
+        {
+            var tile = MainTilemap.GetTile(cellPos);
+            return tile;
         }
 
         /// <summary>
@@ -142,7 +172,7 @@ namespace Game.Town
                 DestroyObjectToPlace();
             }
             // 位置
-            var position = CameraSystem.Inst.GetMouseGridPosition();
+            var position = CameraSystem.Inst.GetMouseCellWorldPos();
             // 物件
             var obj = Instantiate(prefab, position, Quaternion.identity, ObjPool);
             _objectToPlace = obj.GetComponent<PlaceableObject>();

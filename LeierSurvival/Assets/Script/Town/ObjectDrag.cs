@@ -27,9 +27,9 @@ namespace Game.Town
         void Update()
         {
             // 設定，位置。(將座標捕捉到網格)
-            transform.position = CameraSystem.Inst.GetMouseGridPosition();
+            transform.position = CameraSystem.Inst.GetMouseCellWorldPos();
 
-            TestCube.transform.position = CameraSystem.Inst.GetMouseGridPosition();
+            TestCube.transform.position = CameraSystem.Inst.GetMouseCellWorldPos();
         }
 
         void OnDestroy()
