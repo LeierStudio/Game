@@ -10,6 +10,7 @@ namespace Game.Town
         /// <summary> 材質球屬性塊 </summary>
         MaterialPropertyBlock _materialPropertyBlock;
 
+        /// <summary> 測試方塊 </summary>
         GameObject TestCube;
 
         void Awake()
