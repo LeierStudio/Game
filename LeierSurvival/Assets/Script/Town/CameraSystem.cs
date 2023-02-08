@@ -16,8 +16,14 @@ namespace Game.Town
         /// <summary> 射到的圖塊 </summary>
         public TileBase HitTile;
 
+        /// <summary> 射到的圖塊移動速度 </summary>
+        public float HitTileWalkingSpeed;
+
         /// <summary> 建築物系統 </summary>
         BuildingSystem BuildingSystem => BuildingSystem.Inst;
+
+        /// <summary> 建築物系統 </summary>
+        TileAssetSystem TileAssetSystem => TileAssetSystem.Inst;
 
         /// <summary> 主攝影機 </summary>
         Camera _mainCamera;
@@ -33,6 +39,14 @@ namespace Game.Town
             MouseWorldPosition = Input.mousePosition;
             MouseGridPosition = BuildingSystem.GetCellPos(GetMouseCellWorldPos());
             HitTile = BuildingSystem.GetTile(MouseGridPosition);
+            if (HitTile)
+            {
+                HitTileWalkingSpeed = TileAssetSystem.GetTileData(HitTile).WalkingSpeed;
+            }
+            else
+            {
+                HitTileWalkingSpeed = 0;
+            }
         }
 
         /// <summary>
