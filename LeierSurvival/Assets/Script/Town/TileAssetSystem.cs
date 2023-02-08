@@ -25,16 +25,27 @@ namespace Game.Town
         }
 
         /// <summary>
+        /// 取得行走速度
+        /// </summary>
+        /// <param name="tileBase">圖塊</param>
+        public float GetWalkingSpeed(TileBase tileBase)
+        {
+            var tileData = GetTileData(tileBase);
+            var walkingSpeed = tileData.WalkingSpeed;
+            return walkingSpeed;
+        }
+
+        /// <summary>
         /// 取得圖塊資料
         /// </summary>
         /// <param name="tileBase">圖塊</param>
         public TileData GetTileData(TileBase tileBase)
         {
-            var tileData = DataFromTiles[tileBase];
-            if (tileData == null)
+            if (!DataFromTiles.ContainsKey(tileBase))
             {
                 Debug.LogError($"[TileAssetSystem] 找不到 tileBase: {tileBase} 這個圖塊資料。");
             }
+            var tileData = DataFromTiles[tileBase];
             return tileData;
         }
     }

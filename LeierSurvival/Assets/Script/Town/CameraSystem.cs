@@ -39,14 +39,7 @@ namespace Game.Town
             MouseWorldPosition = Input.mousePosition;
             MouseGridPosition = BuildingSystem.GetCellPos(GetMouseCellWorldPos());
             HitTile = BuildingSystem.GetTile(MouseGridPosition);
-            if (HitTile)
-            {
-                HitTileWalkingSpeed = TileAssetSystem.GetTileData(HitTile).WalkingSpeed;
-            }
-            else
-            {
-                HitTileWalkingSpeed = 0;
-            }
+            HitTileWalkingSpeed = HitTile ? TileAssetSystem.GetWalkingSpeed(HitTile) : 0;
         }
 
         /// <summary>
