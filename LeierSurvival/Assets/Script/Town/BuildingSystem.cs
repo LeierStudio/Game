@@ -27,6 +27,9 @@ namespace Game.Town
         /// <summary> 白色地圖 </summary>
         [SerializeField] TileBase WhiteTile;
 
+        /// <summary> 物件池 </summary>
+        [SerializeField] Transform ObjPool;
+
         /// <summary> 網格 </summary>
         Grid _grid;
 
@@ -77,9 +80,17 @@ namespace Game.Town
             }
             else if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Escape))
             {
-                Destroy(_objectToPlace.gameObject);
-                _objectToPlace = null;
+                DestroyObjectToPlace();
             }
+        }
+
+        /// <summary>
+        /// 銷毀放置物件
+        /// </summary>
+        void DestroyObjectToPlace()
+        {
+            Destroy(_objectToPlace.gameObject);
+            _objectToPlace = null;
         }
         #endregion
 
@@ -126,10 +137,14 @@ namespace Game.Town
         /// <param name="prefab">欲置物</param>
         public void InitializeWithObject(GameObject prefab)
         {
+            if (_objectToPlace)
+            {
+                DestroyObjectToPlace();
+            }
             // 位置
             var position = CameraSystem.Inst.GetMouseGridPosition();
             // 物件
-            var obj = Instantiate(prefab, position, Quaternion.identity);
+            var obj = Instantiate(prefab, position, Quaternion.identity, ObjPool);
             _objectToPlace = obj.GetComponent<PlaceableObject>();
             // 附加，拖曳元件。
             obj.AddComponent<ObjectDrag>();

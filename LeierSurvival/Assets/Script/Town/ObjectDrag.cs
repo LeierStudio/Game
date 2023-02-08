@@ -10,6 +10,8 @@ namespace Game.Town
         /// <summary> 材質球屬性塊 </summary>
         MaterialPropertyBlock _materialPropertyBlock;
 
+        GameObject TestCube;
+
         void Awake()
         {
             _materialPropertyBlock = new MaterialPropertyBlock();
@@ -17,18 +19,25 @@ namespace Game.Town
 
             // 設定透明度
             SetTransparency(0.2f);
+
+            TestCube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            TestCube.transform.position = transform.position;
         }
 
         void Update()
         {
             // 設定，位置。(將座標捕捉到網格)
             transform.position = CameraSystem.Inst.GetMouseGridPosition();
+
+            TestCube.transform.position = CameraSystem.Inst.GetMouseGridPosition();
         }
 
         void OnDestroy()
         {
             // 設定透明度
             SetTransparency(1);
+
+            Destroy(TestCube);
         }
 
         /// <summary>
